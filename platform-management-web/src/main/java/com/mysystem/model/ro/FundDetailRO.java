@@ -16,4 +16,7 @@ public class FundDetailRO {
 
     @ApiModelProperty("描述")
     private String description;
+
+    @ApiModelProperty("相关人")
+    private String relativeUserName;
 }

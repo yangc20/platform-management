@@ -16,3 +16,6 @@ create table t_fund_detail
   DEFAULT CHARSET = utf8;
 
 alter table t_fund_detail add column `deleted` int default 0 comment '是否删除，0-否 1-是';
+
+
+alter table t_fund_detail add column `relative_user_id` int default null comment '相关人id';

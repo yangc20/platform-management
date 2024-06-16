@@ -29,4 +29,6 @@ public class FundDetailPO {
     private Date updateTime;
 
     private Integer deleted;
+
+    private Integer relativeUserId; // 相关人
 }

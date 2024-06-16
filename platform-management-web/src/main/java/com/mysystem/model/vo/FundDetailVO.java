@@ -24,6 +24,11 @@ public class FundDetailVO {
 
     private String description;
 
+
+    private Integer relativeUserId;
+
+    private String relativeUserName;
+
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private Date createTime;
 
