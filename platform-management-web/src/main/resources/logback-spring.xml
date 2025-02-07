@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+    <!-- 定义日志文件的存储路径 -->
+    <property name="LOG_DIR" value="logs"/>
+
+    <!-- 定义颜色 -->
+    <conversionRule conversionWord="clr" converterClass="org.springframework.boot.logging.logback.ColorConverter" />
+    <conversionRule conversionWord="wex" converterClass="org.springframework.boot.logging.logback.WhitespaceThrowableProxyConverter" />
+    <conversionRule conversionWord="wEx" converterClass="org.springframework.boot.logging.logback.ExtendedWhitespaceThrowableProxyConverter" />
+
+    <!-- 控制台日志 -->
+    <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>
+                %clr(%d{yyyy-MM-dd HH:mm:ss.SSS}){faint}  %clr(%-5level){${LOG_LEVEL_PATTERN}} %clr(${PID:- }){magenta} [%clr(%15.15t){cyan}] %clr(%-40.40logger{39}){yellow} : %msg%n
+            </pattern>
+        </encoder>
+    </appender>
+
+    <!-- 文件日志 -->
+    <appender name="FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>${LOG_DIR}/application.log</file>
+        <encoder>
+            <pattern>
+                %d{yyyy-MM-dd HH:mm:ss.SSS} %-5level ${PID:- } [%15.15t] %-40.40logger{39} : %msg%n
+            </pattern>
+        </encoder>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <!-- 每天凌晨切分日志 -->
+            <fileNamePattern>${LOG_DIR}/application.%d{yyyy-MM-dd}.%i.log</fileNamePattern>
+            <!-- 日志文件保留 30 天 -->
+            <maxHistory>30</maxHistory>
+            <!-- 每 100MB 切分一次 -->
+            <timeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+                <maxFileSize>100MB</maxFileSize>
+            </timeBasedFileNamingAndTriggeringPolicy>
+        </rollingPolicy>
+    </appender>
+
+    <!-- 根日志级别 -->
+    <root level="INFO">
+        <appender-ref ref="STDOUT"/>
+        <appender-ref ref="FILE"/>
+    </root>
+</configuration>
